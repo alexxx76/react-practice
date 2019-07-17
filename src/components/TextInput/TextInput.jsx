@@ -9,7 +9,6 @@ class TextInput extends Component {
   };
 
   getConverter(e) {
-    console.log(e.target.value);
     this.props.setConverter(e.target.value);
   };
   
