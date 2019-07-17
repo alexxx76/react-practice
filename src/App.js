@@ -3,6 +3,7 @@ import './App.css';
 import Display from './components/Display';
 import TextInput from './components/TextInput';
 import Switcher from './components/Switcher';
+import Themes from './components/Themes';
 
 const upperFirstLetter = text => text.split('')
   .map((item, i) => i === 0 ? item.toUpperCase() : item.toLowerCase())
@@ -30,13 +31,15 @@ class App extends Component {
 
     this.state = {
       text: 'Text for displaying',
-      isView: true
+      isView: true,
+      theme: 'default'
     };
 
     this.changeText = this.changeText.bind(this);
     this.clearText = this.clearText.bind(this);
     this.changeView = this.changeView.bind(this);
     this.setConverter = this.setConverter.bind(this);
+    this.setTheme = this.setTheme.bind(this);
   }
 
   changeText(e) {
@@ -55,9 +58,20 @@ class App extends Component {
     this.setState({ text: textConvert(this.state.text, convertMethod) });
   };
 
+  setTheme(theme) {
+    this.setState({ theme: theme });
+    console.log('App - ', theme, this.state.theme);
+  }
+
   render() {
     return (
       <div>
+        <div>
+          <Switcher
+            text={this.state.isView ? "скрыть" : "показать"}
+            switchView={this.changeView}
+          />
+        </div>
         {this.state.isView &&
           <div>
             <div>
@@ -73,14 +87,14 @@ class App extends Component {
                 setConverter={this.setConverter}
               />
             </div>
+            <div>
+              <Themes
+                theme={this.state.theme}
+                setTheme={this.setTheme}
+              />
+            </div>
           </div>
         }
-        <div>
-          <Switcher
-            text={this.state.isView ? "скрыть" : "показать"}
-            switchView={this.changeView}
-          />
-        </div>
       </div>
     );
   };
