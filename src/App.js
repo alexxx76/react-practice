@@ -4,6 +4,7 @@ import Display from './components/Display';
 import TextInput from './components/TextInput';
 import Switcher from './components/Switcher';
 import Themes from './components/Themes';
+import MainReset from './components/MainReset';
 
 const upperFirstLetter = text => text.split('')
   .map((item, i) => i === 0 ? item.toUpperCase() : item.toLowerCase())
@@ -71,6 +72,7 @@ class App extends Component {
             text={this.state.isView ? "скрыть" : "показать"}
             switchView={this.changeView}
           />
+          <MainReset />
         </div>
         {this.state.isView &&
           <div>
