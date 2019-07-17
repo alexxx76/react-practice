@@ -5,6 +5,7 @@ import TextInput from './components/TextInput';
 import Switcher from './components/Switcher';
 import Themes from './components/Themes';
 import MainReset from './components/MainReset';
+import Customizer from './components/Customizer';
 
 const upperFirstLetter = text => text.split('')
   .map((item, i) => i === 0 ? item.toUpperCase() : item.toLowerCase())
@@ -94,6 +95,9 @@ class App extends Component {
                 theme={this.state.theme}
                 setTheme={this.setTheme}
               />
+            </div>
+            <div>
+              <Customizer />
             </div>
           </div>
         }
