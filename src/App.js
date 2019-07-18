@@ -6,6 +6,7 @@ import Switcher from './components/Switcher';
 import Themes from './components/Themes';
 import MainReset from './components/MainReset';
 import Customizer from './components/Customizer';
+import Countdown from './components/Countdown/Countdown';
 
 const upperFirstLetter = text => text.split('')
   .map((item, i) => i === 0 ? item.toUpperCase() : item.toLowerCase())
@@ -74,6 +75,10 @@ class App extends Component {
   render() {
     return (
       <div>
+        <div>
+          {/* <Countdown date={{year: 2019, month: 6, day: 18, hour: 23, min: 0, sec: 0}}/> */}
+          <Countdown date="01.10.2020 00:00:00"/>
+        </div>
         <div>
           <Switcher
             text={this.state.isView ? "скрыть" : "показать"}
