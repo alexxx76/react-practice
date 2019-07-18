@@ -34,7 +34,13 @@ class App extends Component {
     this.state = {
       text: 'Text for displaying',
       isView: true,
-      theme: 'default'
+      theme: 'default',
+      defaultLayout: {
+        color: '#777',
+        background: '#eee',
+        fontSize: '16px',
+        fontWeight: '300'
+      }
     };
 
     this.changeText = this.changeText.bind(this);
@@ -80,6 +86,7 @@ class App extends Component {
             <div>
               <Display
                 text={this.state.text}
+                layout={this.state.defaultLayout}
               />
             </div>
             <div>
