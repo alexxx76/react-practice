@@ -6,7 +6,7 @@ import Switcher from './components/Switcher';
 import Themes from './components/Themes';
 import MainReset from './components/MainReset';
 import Customizer from './components/Customizer';
-import Countdown from './components/Countdown/Countdown';
+// import Countdown from './components/Countdown/Countdown';
 
 const upperFirstLetter = text => text.split('')
   .map((item, i) => i === 0 ? item.toUpperCase() : item.toLowerCase())
@@ -69,19 +69,15 @@ class App extends Component {
 
   setTheme(theme) {
     this.setState({ theme: theme });
-    console.log('App - ', theme, this.state.theme);
+    // console.log('App - ', theme, this.state.theme);
   }
 
   render() {
     return (
       <div>
-        <div>
-          <div style={{float: 'left'}}><Countdown date="01.12.2020 00:00:01"/></div>
-          <div style={{float: 'left'}}><Countdown date="01.01.2020 00:00:01"/></div>
-          <div style={{float: 'left'}}><Countdown date="12.01.2019 00:00:01"/></div>
-          <div style={{float: 'left'}}><Countdown date="10.01.2019 00:00:01"/></div>
-          <div style={{clear: 'left'}}></div>
-        </div>
+        {/* <div>
+          <Countdown date="01.12.2020 00:00:01"/>
+        </div> */}
         <div>
           <Switcher
             text={this.state.isView ? "скрыть" : "показать"}
