@@ -76,8 +76,11 @@ class App extends Component {
     return (
       <div>
         <div>
-          {/* <Countdown date={{year: 2019, month: 6, day: 18, hour: 23, min: 0, sec: 0}}/> */}
-          <Countdown date="01.10.2020 00:00:00"/>
+          <div style={{float: 'left'}}><Countdown date="01.12.2020 00:00:01"/></div>
+          <div style={{float: 'left'}}><Countdown date="01.01.2020 00:00:01"/></div>
+          <div style={{float: 'left'}}><Countdown date="12.01.2019 00:00:01"/></div>
+          <div style={{float: 'left'}}><Countdown date="10.01.2019 00:00:01"/></div>
+          <div style={{clear: 'left'}}></div>
         </div>
         <div>
           <Switcher

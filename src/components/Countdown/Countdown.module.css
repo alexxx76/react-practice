@@ -1,8 +1,9 @@
 .countdown {
   width: 300px;
-  height: 175px;
+  height: 202px;
   border: 1px solid #ccc;
-  font-family: Courier;
+  /* font-family: Courier; */
+  font-family: monospace;
   font-size: 14px;
   font-weight: 300;
 }
@@ -10,15 +11,17 @@
 .header {
   height: 20px;
   line-height: 20px;
-  background: #c0fc99;
-  color: #04661d;
+  /* background: #c0fc99; */
+  /* color: #04661d; */
   text-align: center;
-  font-weight: 600;
+  font-weight: 300;
+  padding-top: 10px;
 }
 
 .sheet {
-  background: #dcffc5;
-  color: #138d32;
+  background: #eee;
+  /* background: #dcffc5; */
+  /* color: #138d32; */
   font-weight: 300;
 }
 
