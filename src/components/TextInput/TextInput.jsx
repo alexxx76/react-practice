@@ -28,7 +28,7 @@ class TextInput extends Component {
             className={style.clean}
             onClick={this.props.clearText}
           >
-            сбросить
+            очистить ввод
           </button>
         </div>
         <div onChange={this.getConverter}>
