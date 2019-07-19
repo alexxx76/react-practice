@@ -36,7 +36,7 @@ class App extends Component {
       text: 'Text for displaying',
       isView: true,
       theme: 'default',
-      defaultLayout: {
+      layout: {
         color: '#777',
         background: '#eee',
         fontSize: '16px',
@@ -49,6 +49,10 @@ class App extends Component {
     this.changeView = this.changeView.bind(this);
     this.setConverter = this.setConverter.bind(this);
     this.setTheme = this.setTheme.bind(this);
+    this.setColor = this.setColor.bind(this);
+    this.setBackground = this.setBackground.bind(this);
+    this.setFontSize = this.setFontSize.bind(this);
+    this.setFontWeight = this.setFontWeight.bind(this);
   }
 
   changeText(e) {
@@ -70,7 +74,31 @@ class App extends Component {
   setTheme(theme) {
     this.setState({ theme: theme });
     // console.log('App - ', theme, this.state.theme);
-  }
+  };
+
+  setColor(color) {
+    this.setState({
+      layout: Object.assign({}, this.state.layout, { color: color })
+    });
+  };
+
+  setBackground(background) {
+    this.setState({
+      layout: Object.assign({}, this.state.layout, { background: background })
+    });
+  };
+
+  setFontSize(fontSize) {
+    this.setState({
+      layout: Object.assign({}, this.state.layout, { fontSize: fontSize })
+    });
+  };
+
+  setFontWeight(fontWeight) {
+    this.setState({
+      layout: Object.assign({}, this.state.layout, { fontWeight: fontWeight })
+    });
+  };
 
   render() {
     return (
@@ -90,7 +118,7 @@ class App extends Component {
             <div>
               <Display
                 text={this.state.text}
-                layout={this.state.defaultLayout}
+                layout={this.state.layout}
               />
             </div>
             <div>
@@ -108,7 +136,12 @@ class App extends Component {
               />
             </div>
             <div>
-              <Customizer />
+              <Customizer
+                setColor={this.setColor}
+                setBackground={this.setBackground}
+                setFontSize={this.setFontSize}
+                setFontWeight={this.setFontWeight}
+              />
             </div>
           </div>
         }
