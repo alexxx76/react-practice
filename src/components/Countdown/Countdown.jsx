@@ -44,8 +44,8 @@ class Countdown extends Component {
     return `${first}${'\u00A0'.repeat(getRepeat())}${last}`;
   };
 
-  setMode(value) {
-    this.setState({ mode: value });
+  setMode(e) {
+    this.setState({ mode: e.target.innerText });
   };
 
   isMode(value) {
@@ -97,12 +97,30 @@ class Countdown extends Component {
               }
             </div>
             <div className={style.control}>
-              <button onClick={() => this.setMode('s')}>s</button>
-              <button onClick={() => this.setMode('m')}>m</button>
-              <button onClick={() => this.setMode('H')}>H</button>
-              <button onClick={() => this.setMode('D')}>D</button>
-              <button onClick={() => this.setMode('W')}>W</button>
-              <button onClick={() => this.setMode('M')}>M</button>
+              <button
+                onClick={this.setMode}
+                className={(this.isMode('s') ? style.active : style.inactive)}
+              >s</button>
+              <button
+                onClick={this.setMode}
+                className={(this.isMode('m') ? style.active : style.inactive)}
+              >m</button>
+              <button
+                onClick={this.setMode}
+                className={(this.isMode('H') ? style.active : style.inactive)}
+              >H</button>
+              <button
+                onClick={this.setMode}
+                className={(this.isMode('D') ? style.active : style.inactive)}
+              >D</button>
+              <button
+                onClick={this.setMode}
+                className={(this.isMode('W') ? style.active : style.inactive)}
+              >W</button>
+              <button
+                onClick={this.setMode}
+                className={(this.isMode('M') ? style.active : style.inactive)}
+              >M</button>
             </div>
           </div>
         }

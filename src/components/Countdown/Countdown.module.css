@@ -1,6 +1,6 @@
 .countdown {
   width: 300px;
-  height: 222px;
+  height: 169px;
   border: 1px solid #ccc;
   /* font-family: Courier; */
   font-family: monospace;
@@ -33,4 +33,22 @@
 .control {
   display: flex;
   justify-content: center;
+  padding-bottom: 20px;
+}
+
+.active {
+  width: 32px;
+  height: 32px;
+  background: #ddd;
+  border: 1px solid #ccc;
+  /* border-bottom: 3px solid #0c0; */
+  border-bottom: 3px solid #555;
+}
+
+.inactive {
+  width: 32px;
+  height: 32px;
+  background: #ddd;
+  border: 1px solid #ccc;
+  border-bottom: 3px solid #fff;
 }
