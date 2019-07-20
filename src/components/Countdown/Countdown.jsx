@@ -1,36 +1,46 @@
 import React, { Component } from 'react';
 import style from './Countdown.module.css';
 
-const getDateNow = () => new Date().toLocaleString().split(',').join('');
-const getDateSet = (string) => new Date(string).toLocaleString().split(',').join('');
-const getDateNowMS = () => new Date().valueOf();
-const getDateSetMS = (string) => new Date(string).valueOf();
-const getDateDiff = (string) => getDateSetMS(string) - getDateNowMS();
-const getDiffSec = (string) => parseInt(getDateDiff(string) / 1000);
-const getDiffMin = (string) => parseInt(getDateDiff(string) / 1000 / 60);
-const getDiffHour = (string) => parseInt(getDateDiff(string) / 1000 / 60 / 60);
-const getDiffDay = (string) => parseInt(getDateDiff(string) / 1000 / 60 / 60 / 24);
-const getDiffWeek = (string) => parseInt(getDateDiff(string) / 1000 / 60 / 60 / 24 / 7);
-const getDiffMonth = (string) => parseInt(getDateDiff(string) / 1000 / 60 / 60 / 24 / 30);
-
-const formatter = (length, first, last) => {
-  last = (() => {
-    let chars = (last + '').split('');
-    for (let i = (chars.length - 1), j = 1; i > 0; i-- , j++) {
-      if (j % 3 === 0) chars[i] = '.' + chars[i];
-    }
-    chars = chars.join('');
-    return chars;
-  })();
-  const sumLen = () => first.length + (last + '').length;
-  const getRepeat = () => (length - sumLen() > 1) ? (length - sumLen()) : 1;
-  return `${first}${'\u00A0'.repeat(getRepeat())}${last}`;
-};
 
 class Countdown extends Component {
   constructor(props) {
     super(props);
-    this.state = { date: new Date(this.props.date) };
+    console.log(this.props.dateX);
+    this.state = {
+      dateX: this.getDateX(Object.assign({}, this.props.dateX)),
+      date: new Date()
+    };
+    console.log(this.state);
+  };
+
+  getDateX = ({ year, month, day, hour, minute, second }) => {
+    console.log(year, month, day, hour, minute, second);
+    return new Date(year, month, day, hour, minute, second);
+  };
+  getDateText  = () => new Date().toLocaleString().split(',').join('');
+  getDateXText = () => this.state.dateX.toLocaleString().split(',').join('');
+  getDateMS    = () => this.state.date.valueOf();
+  getDateXMS   = () => this.state.dateX.valueOf();
+  getDateDiff  = () => this.getDateXMS() - this.getDateMS();
+  getDiffSec   = () => parseInt(this.getDateDiff() / 1000);
+  getDiffMin   = () => parseInt(this.getDateDiff() / 1000 / 60);
+  getDiffHour  = () => parseInt(this.getDateDiff() / 1000 / 60 / 60);
+  getDiffDay   = () => parseInt(this.getDateDiff() / 1000 / 60 / 60 / 24);
+  getDiffWeek  = () => parseInt(this.getDateDiff() / 1000 / 60 / 60 / 24 / 7);
+  getDiffMonth = () => parseInt(this.getDateDiff() / 1000 / 60 / 60 / 24 / 30);
+  
+  formatter = (length, first, last) => {
+    last = (() => {
+      let chars = (last + '').split('');
+      for (let i = (chars.length - 1), j = 1; i > 0; i-- , j++) {
+        if (j % 3 === 0) chars[i] = '.' + chars[i];
+      }
+      chars = chars.join('');
+      return chars;
+    })();
+    const sumLen = () => first.length + (last + '').length;
+    const getRepeat = () => (length - sumLen() > 1) ? (length - sumLen()) : 1;
+    return `${first}${'\u00A0'.repeat(getRepeat())}${last}`;
   };
 
   componentDidMount() {
@@ -53,17 +63,17 @@ class Countdown extends Component {
   render() {
     return (
       <div className={style.countdown}>
-        {this.props.date &&
+        {this.props.dateX &&
           <div className={style.sheet}>
-            <div className={style.header}>{getDateSet(this.props.date)}</div>
-            <div className={style.header}>{getDateNow()}</div>
+            <div className={style.header}>{this.getDateXText(this.state.dateX)}</div>
+            <div className={style.header}>{this.getDateText()}</div>
             <div className={style.list}>
-              <div>{formatter(20, 'секунд', getDiffSec(this.props.date))}</div>
-              <div>{formatter(20, 'минут', getDiffMin(this.props.date))}</div>
-              <div>{formatter(20, 'часов', getDiffHour(this.props.date))}</div>
-              <div>{formatter(20, 'дней', getDiffDay(this.props.date))}</div>
-              <div>{formatter(20, 'недель', getDiffWeek(this.props.date))}</div>
-              <div>{formatter(20, 'месяцев', getDiffMonth(this.props.date))}</div>
+              <div>{this.formatter(20, 'секунд', this.getDiffSec(this.state.dateX))}</div>
+              <div>{this.formatter(20, 'минут', this.getDiffMin(this.state.dateX))}</div>
+              <div>{this.formatter(20, 'часов', this.getDiffHour(this.state.dateX))}</div>
+              <div>{this.formatter(20, 'дней', this.getDiffDay(this.state.dateX))}</div>
+              <div>{this.formatter(20, 'недель', this.getDiffWeek(this.state.dateX))}</div>
+              <div>{this.formatter(20, 'месяцев', this.getDiffMonth(this.state.dateX))}</div>
             </div>
           </div>
         }
