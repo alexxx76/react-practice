@@ -5,30 +5,31 @@ import style from './Countdown.module.css';
 class Countdown extends Component {
   constructor(props) {
     super(props);
-    console.log(this.props.dateX);
+
     this.state = {
       dateX: this.getDateX(Object.assign({}, this.props.dateX)),
-      date: new Date()
+      date: new Date(),
+      mode: 's'
     };
-    console.log(this.state);
+
+    this.setMode = this.setMode.bind(this);
   };
 
   getDateX = ({ year, month, day, hour, minute, second }) => {
-    console.log(year, month, day, hour, minute, second);
     return new Date(year, month, day, hour, minute, second);
   };
-  getDateText  = () => new Date().toLocaleString().split(',').join('');
+  getDateText = () => new Date().toLocaleString().split(',').join('');
   getDateXText = () => this.state.dateX.toLocaleString().split(',').join('');
-  getDateMS    = () => this.state.date.valueOf();
-  getDateXMS   = () => this.state.dateX.valueOf();
-  getDateDiff  = () => this.getDateXMS() - this.getDateMS();
-  getDiffSec   = () => parseInt(this.getDateDiff() / 1000);
-  getDiffMin   = () => parseInt(this.getDateDiff() / 1000 / 60);
-  getDiffHour  = () => parseInt(this.getDateDiff() / 1000 / 60 / 60);
-  getDiffDay   = () => parseInt(this.getDateDiff() / 1000 / 60 / 60 / 24);
-  getDiffWeek  = () => parseInt(this.getDateDiff() / 1000 / 60 / 60 / 24 / 7);
+  getDateMS = () => this.state.date.valueOf();
+  getDateXMS = () => this.state.dateX.valueOf();
+  getDateDiff = () => this.getDateXMS() - this.getDateMS();
+  getDiffSec = () => parseInt(this.getDateDiff() / 1000);
+  getDiffMin = () => parseInt(this.getDateDiff() / 1000 / 60);
+  getDiffHour = () => parseInt(this.getDateDiff() / 1000 / 60 / 60);
+  getDiffDay = () => parseInt(this.getDateDiff() / 1000 / 60 / 60 / 24);
+  getDiffWeek = () => parseInt(this.getDateDiff() / 1000 / 60 / 60 / 24 / 7);
   getDiffMonth = () => parseInt(this.getDateDiff() / 1000 / 60 / 60 / 24 / 30);
-  
+
   formatter = (length, first, last) => {
     last = (() => {
       let chars = (last + '').split('');
@@ -42,6 +43,14 @@ class Countdown extends Component {
     const getRepeat = () => (length - sumLen() > 1) ? (length - sumLen()) : 1;
     return `${first}${'\u00A0'.repeat(getRepeat())}${last}`;
   };
+
+  setMode(value) {
+    this.setState({ mode: value });
+  };
+
+  isMode(value) {
+    return this.state.mode === value ? true : false;
+  }
 
   componentDidMount() {
     this.timerID = setInterval(
@@ -68,12 +77,32 @@ class Countdown extends Component {
             <div className={style.header}>{this.getDateXText(this.state.dateX)}</div>
             <div className={style.header}>{this.getDateText()}</div>
             <div className={style.list}>
-              <div>{this.formatter(20, 'секунд', this.getDiffSec(this.state.dateX))}</div>
-              <div>{this.formatter(20, 'минут', this.getDiffMin(this.state.dateX))}</div>
-              <div>{this.formatter(20, 'часов', this.getDiffHour(this.state.dateX))}</div>
-              <div>{this.formatter(20, 'дней', this.getDiffDay(this.state.dateX))}</div>
-              <div>{this.formatter(20, 'недель', this.getDiffWeek(this.state.dateX))}</div>
-              <div>{this.formatter(20, 'месяцев', this.getDiffMonth(this.state.dateX))}</div>
+              {this.isMode('s') &&
+                <div>{this.formatter(19, 'секунд', this.getDiffSec(this.state.dateX))}</div>
+              }
+              {this.isMode('m') &&
+                <div>{this.formatter(19, 'минут', this.getDiffMin(this.state.dateX))}</div>
+              }
+              {this.isMode('H') &&
+                <div>{this.formatter(19, 'часов', this.getDiffHour(this.state.dateX))}</div>
+              }
+              {this.isMode('D') &&
+                <div>{this.formatter(19, 'дней', this.getDiffDay(this.state.dateX))}</div>
+              }
+              {this.isMode('W') &&
+                <div>{this.formatter(19, 'недель', this.getDiffWeek(this.state.dateX))}</div>
+              }
+              {this.isMode('M') &&
+                <div>{this.formatter(19, 'месяцев', this.getDiffMonth(this.state.dateX))}</div>
+              }
+            </div>
+            <div className={style.control}>
+              <button onClick={() => this.setMode('s')}>s</button>
+              <button onClick={() => this.setMode('m')}>m</button>
+              <button onClick={() => this.setMode('H')}>H</button>
+              <button onClick={() => this.setMode('D')}>D</button>
+              <button onClick={() => this.setMode('W')}>W</button>
+              <button onClick={() => this.setMode('M')}>M</button>
             </div>
           </div>
         }

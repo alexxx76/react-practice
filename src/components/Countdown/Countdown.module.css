@@ -1,6 +1,6 @@
 .countdown {
   width: 300px;
-  height: 202px;
+  height: 222px;
   border: 1px solid #ccc;
   /* font-family: Courier; */
   font-family: monospace;
@@ -28,4 +28,9 @@
 .list {
   padding: 20px 0;
   text-align: center;
+}
+
+.control {
+  display: flex;
+  justify-content: center;
 }
