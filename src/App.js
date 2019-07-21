@@ -4,7 +4,7 @@ import Display from './components/Display';
 import TextInput from './components/TextInput';
 import Switcher from './components/Switcher';
 import Themes from './components/Themes';
-import MainReset from './components/MainReset';
+import Toggle from './components/Toggle';
 import Customizer from './components/Customizer';
 import Countdown from './components/Countdown/Countdown';
 
@@ -42,6 +42,7 @@ class App extends Component {
     super();
 
     this.state = {
+      isCountdown: true,
       text: 'Text for displaying',
       isView: true,
       theme: 'default',
@@ -55,6 +56,7 @@ class App extends Component {
 
     this.changeText = this.changeText.bind(this);
     this.clearText = this.clearText.bind(this);
+    this.toggleCountdown = this.toggleCountdown.bind(this);
     this.changeView = this.changeView.bind(this);
     this.setConverter = this.setConverter.bind(this);
     this.setTheme = this.setTheme.bind(this);
@@ -72,6 +74,10 @@ class App extends Component {
     this.setState({ text: '' });
   };
 
+  toggleCountdown() {
+    this.setState({ isCountdown: !this.state.isCountdown });
+  }
+
   changeView() {
     this.setState({ isView: !this.state.isView });
   };
@@ -82,7 +88,6 @@ class App extends Component {
 
   setTheme(theme) {
     this.setState({ theme: theme });
-    // console.log('App - ', theme, this.state.theme);
   };
 
   setColor(color) {
@@ -113,14 +118,18 @@ class App extends Component {
     return (
       <div>
         <div>
-          <Countdown dateX={dateX}/>
+          {this.state.isCountdown && <Countdown dateX={dateX} />}
         </div>
         <div>
           <Switcher
             text={this.state.isView ? "скрыть" : "показать"}
             switchView={this.changeView}
           />
-          <MainReset />
+          <Toggle
+            actText={this.state.isCountdown ? "скрыть" : "показать"}
+            text="обратный отсчет"
+            toggle={this.toggleCountdown}
+          />
         </div>
         {this.state.isView &&
           <div>
