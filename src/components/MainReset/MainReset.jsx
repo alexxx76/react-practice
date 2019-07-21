@@ -1,9 +1,12 @@
 import React from 'react';
 import style from './MainReset.module.css';
 
-const MainReset = () => {
+const MainReset = (props) => {
   return (
-    <button className={style.reset}>
+    <button
+      className={style.reset}
+      onClick={props.mainReset}
+    >
       сбросить все данные
     </button>
   );
