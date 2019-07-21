@@ -11,10 +11,49 @@ import Countdown from './components/Countdown/Countdown';
 const dateX = {
   year: 2020,
   month: 0,
-  day: 1,
+  day: 9,
   hour: 0,
   minute: 0,
   second: 0
+};
+
+const themes = {
+  default: {
+    color: '#777',
+    background: '#eee',
+    fontSize: '16px',
+    fontWeight: '300'
+  },
+  dark: {
+    color: '#ccc',
+    background: '#000',
+    fontSize: '24px',
+    fontWeight: '600'
+  },
+  light: {
+    color: '#000',
+    background: '#fff',
+    fontSize: '20px',
+    fontWeight: '300'
+  },
+  brown: {
+    color: '#fa0',
+    background: '#a30',
+    fontSize: '32px',
+    fontWeight: '600'
+  },
+  sunrise: {
+    color: '#fff',
+    background: '#fa0',
+    fontSize: '24px',
+    fontWeight: '300'
+  },
+  seawave: {
+    color: '#0a0',
+    background: '#00f',
+    fontSize: '36px',
+    fontWeight: '300'
+  }
 };
 
 const upperFirstLetter = text => text.split('')
@@ -88,6 +127,7 @@ class App extends Component {
 
   setTheme(theme) {
     this.setState({ theme: theme });
+    this.setState({ layout: themes[theme]});
   };
 
   setColor(color) {
