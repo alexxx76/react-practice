@@ -56,8 +56,8 @@ const Customizer = (props) => {
             className={style.customSelect}
             onChange={(e) => props.setFontWeight(e.target.value)}
           >
-            <option value="normal">normal</option>
-            <option value="bold">bold</option>
+            <option value="300">normal</option>
+            <option value="600">bold</option>
           </select> : Font Weight
         </div>
       </div>
