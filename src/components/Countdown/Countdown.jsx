@@ -100,26 +100,32 @@ class Countdown extends Component {
               <button
                 onClick={this.setMode}
                 className={(this.isMode('s') ? style.active : style.inactive)}
+                title="секунды"
               >s</button>
               <button
                 onClick={this.setMode}
                 className={(this.isMode('m') ? style.active : style.inactive)}
+                title="минуты"
               >m</button>
               <button
                 onClick={this.setMode}
                 className={(this.isMode('H') ? style.active : style.inactive)}
+                title="часы"
               >H</button>
               <button
                 onClick={this.setMode}
                 className={(this.isMode('D') ? style.active : style.inactive)}
+                title="дни"
               >D</button>
               <button
                 onClick={this.setMode}
                 className={(this.isMode('W') ? style.active : style.inactive)}
+                title="недели"
               >W</button>
               <button
                 onClick={this.setMode}
                 className={(this.isMode('M') ? style.active : style.inactive)}
+                title="месяцы"
               >M</button>
             </div>
           </div>
