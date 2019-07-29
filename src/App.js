@@ -8,6 +8,7 @@ import Toggle from './components/Toggle';
 import Customizer from './components/Customizer';
 import Countdown from './components/Countdown/Countdown';
 import DonutChart from './components/DonutChart';
+import DivBootstrapJquery from './components/DivBootstrapJquery';
 
 const dateX = {
   year: 2020,
@@ -205,6 +206,9 @@ class App extends Component {
             <div style={{width: '300px', marginTop: '20px'}}>
               <DonutChart text="ReactJS" value="83" total="100" />
             </div>
+            {/* <div>
+              <DivBootstrapJquery />
+            </div> */}
           </div>
         }
       </div>
