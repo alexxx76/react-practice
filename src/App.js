@@ -7,6 +7,7 @@ import Themes from './components/Themes';
 import Toggle from './components/Toggle';
 import Customizer from './components/Customizer';
 import Countdown from './components/Countdown/Countdown';
+import DonutChart from './components/DonutChart';
 
 const dateX = {
   year: 2020,
@@ -200,6 +201,9 @@ class App extends Component {
                 setFontSize={this.setFontSize}
                 setFontWeight={this.setFontWeight}
               />
+            </div>
+            <div style={{width: '300px', marginTop: '20px'}}>
+              <DonutChart text="ReactJS" value="83" total="100" />
             </div>
           </div>
         }
